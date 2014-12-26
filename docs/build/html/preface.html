@@ -1,0 +1,187 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>2. 序言 &mdash; 《A Little Java, A Few Patterns》笔记 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="《A Little Java, A Few Patterns》笔记 1.0 documentation" href="index.html" />
+    <link rel="next" title="3. Java小用" href="experimenting_with_java.html" />
+    <link rel="prev" title="1. 前言" href="foreword.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="experimenting_with_java.html" title="3. Java小用"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="foreword.html" title="1. 前言"
+             accesskey="P">previous</a> |</li>
+        <li><a href="index.html">《A Little Java, A Few Patterns》笔记 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="id1">
+<h1><a class="toc-backref" href="#id6">2. 序言</a><a class="headerlink" href="#id1" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">tags:</th><td class="field-body">java, oop, design pattern, functional</td>
+</tr>
+<tr class="field-even field"><th class="field-name">category:</th><td class="field-body">java</td>
+</tr>
+</tbody>
+</table>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#id1" id="id6">序言</a><ul>
+<li><a class="reference internal" href="#id2" id="id7">本书适用的读者</a></li>
+<li><a class="reference internal" href="#id3" id="id8">本书未涉及的方面</a></li>
+<li><a class="reference internal" href="#id4" id="id9">感谢</a></li>
+<li><a class="reference internal" href="#id5" id="id10">本书阅读指南</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<hr class="docutils" />
+<p>一门面向对象编程语言能够让程序员构造可复用的程序组件。其它程序员通过使用这些组件，能够快速地搭建新的大型程序和框架。在理想的状态下，程序员不需要修改任何已经存在的代码，只需要将它们简单地组装在一起然后添加一些新的代码即可。当然这些可复用的组件并不是天上掉下来的馅饼，它是有代价的。它需要一门经过良好设计的面向对象编程语言和严格的编程规范。</p>
+<p>Java就是一门这样的语言。这本书会介绍它的面向对象元素：类、属性、方法、继承和接口。这些核心元素都有着简单的语法模型，能够帮助程序员表达它们。并且，Java还实现了内存自动管理，这更是让程序员们从思考机器的实现细节中解放出来，从而能够更专注于程序设计。</p>
+<p>这本书的另外一个目的是向读者介绍 <strong>设计模式</strong> 。设计模式是能够加强代码复用的编程规范的关键所在。设计模式能够帮助程序员很好地组织面向对象组件，这样程序员就能够按照自己所希望的那样，实现整个计算流程了。更重要的是，设计模式有助于沟通程序组件的重要属性（这句不知道怎么意译，只能直译）。如果一个组件按照精确的公式化的模式实践（它的文档也一样），那么其他程序员就能够很容易地理解它的结构并且在自己的程序进行复用，甚至不需要了解该组件的源代码。</p>
+<div class="section" id="id2">
+<h2><a class="toc-backref" href="#id7">2.1. 本书适用的读者</a><a class="headerlink" href="#id2" title="Permalink to this headline">¶</a></h2>
+<p>这本书主要的受众是那些愿意学习面向对象的本质以及设计模式的人，尤其是程序员、设计师和学生等等。读者需要有一些基本的编程经验。如果读者理解函数式编程的基本原理，那么他们将会从本书获得最大收益。了解函数式设计的最好办法是学一门使用Scheme（或者ML）语言进行教学的入门级计算机科学课程，但这并不是必需的。</p>
+</div>
+<div class="section" id="id3">
+<h2><a class="toc-backref" href="#id8">2.2. 本书未涉及的方面</a><a class="headerlink" href="#id3" title="Permalink to this headline">¶</a></h2>
+<p>Java在它的面向对象核心之上，提供了很多有用的特性及库。当然，这些额外的Java元素对于专业编程来说很重要，但对于本书的重要目标：</p>
+<blockquote>
+<div>面向对象编程及设计模式的使用</div></blockquote>
+<p>来说却没有什么关系。正因为这个原因，本书不是一本完全的Java入门书籍。不过，掌握了本书内容的读者在学习了本书 <cite>Commencement</cite> 章节补充那些书以后，会很快成长为一名专业的Java程序员。</p>
+<p>有关设计模式的书籍发展得非常快。所以对一本入门级的书来说，能够清楚涉及到的设计模式不是很多。但是我们用到的模式的简洁以及强大功能会鼓舞读者继续学习书后所提及的额外的有关设计模式的资料。</p>
+</div>
+<div class="section" id="id4">
+<h2><a class="toc-backref" href="#id9">2.3. 感谢</a><a class="headerlink" href="#id4" title="Permalink to this headline">¶</a></h2>
+<p>基本是感谢一堆人，以及每个人对本书做了哪些贡献，暂不翻译。</p>
+</div>
+<div class="section" id="id5">
+<h2><a class="toc-backref" href="#id10">2.4. 本书阅读指南</a><a class="headerlink" href="#id5" title="Permalink to this headline">¶</a></h2>
+<p>不要简单粗暴地过一遍本书。至少用心地读上7次。在读书时记得做标记或者写笔记，在本书的犄角旮旯会有诸多有用的提示。完整得过完每一个例子，而不是简单拿眼睛浏览一下。牢记一句箴言：先动脑，再动手。</p>
+<p>本书形式是有关有趣的Java编程的对话。在你理解了书中的例子之后就动手实践它们，通过修改这些程序和例子来看看它们倒底是如何工作的。目前不幸的是大部分的Java实现都没有交互式命令行或者解释器。这就需要你这边做一些必要的重复性工作。接下来的章节会告诉你一些如何体验Java的提示。我们不会在本书里对设计模式给出任何正式的定义。我们相信读者你有这个能力能够给出你自己对设计模式的定义，这样你才能更好地理解并掌握它们，而不是通过我们直接灌输给你。但是你要确认你自己知道并理解了在本书大部分章节里给出的部分建议。</p>
+<p>我们在书中使用一些 <strong>标记规定</strong> 来在不同层次帮助你理解程序。</p>
+<div class="admonition note">
+<p class="first admonition-title">Note</p>
+<p>主要的规定就是通过字体来标识不同类型的单词。</p>
+<p>该段下面基本就是告诉你各种类型的单词使用什么字体，</p>
+<p class="last">这个也不翻译了，看例子就知道。</p>
+</div>
+<p>本书的例子中出现食物名有两个原因。</p>
+<ol class="arabic">
+<li><p class="first">食物比起那些抽象的概念来说更容易可视化</p>
+<p>（但是你饿的时候读本书就不是一个好主意了）。</p>
+<p>我们希望我们选择食物名能够有助读者理解本书中的例子和主题。</p>
+</li>
+<li><p class="first">我们希望在读书时能够小分一下心。</p>
+<p>我们知道当你试图理解这些主题时多少有点沮丧，</p>
+<p>但是一丢丢分心多少能够帮助你远离沮丧的情绪。</p>
+</li>
+</ol>
+<p>你要准备开始阅读本书喽。祝你好运！我们希望你能够享受阅读本书。</p>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3><a href="index.html">Table Of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">2. 序言</a><ul>
+<li><a class="reference internal" href="#id2">2.1. 本书适用的读者</a></li>
+<li><a class="reference internal" href="#id3">2.2. 本书未涉及的方面</a></li>
+<li><a class="reference internal" href="#id4">2.3. 感谢</a></li>
+<li><a class="reference internal" href="#id5">2.4. 本书阅读指南</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="foreword.html"
+                        title="previous chapter">1. 前言</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="experimenting_with_java.html"
+                        title="next chapter">3. Java小用</a></p>
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/preface.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="experimenting_with_java.html" title="3. Java小用"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="foreword.html" title="1. 前言"
+             >previous</a> |</li>
+        <li><a href="index.html">《A Little Java, A Few Patterns》笔记 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, JaunaryStar.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>

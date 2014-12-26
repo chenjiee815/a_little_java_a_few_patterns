@@ -1,0 +1,15 @@
+==========
+ 关于作者
+==========
+
+技术标签: Linux、Emacs、Python、Scheme、Bash Shell
+
+业余: 佛学、toastmaster俱乐部演讲
+
+运动: 桌上足球、羽毛球、台球、乒乓球
+
+性格: 内向、中庸
+
+爱好: 看书、编程、折腾跟计算机相关的事
+
+联系方式: chenjiee815@gmail.com

@@ -1,0 +1,256 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    
+    <title>Be a Good Visitor &mdash; 《A Little Java, A Few Patterns》笔记 1.0 documentation</title>
+    
+    <link rel="stylesheet" href="_static/default.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    
+    <script type="text/javascript">
+      var DOCUMENTATION_OPTIONS = {
+        URL_ROOT:    './',
+        VERSION:     '1.0',
+        COLLAPSE_INDEX: false,
+        FILE_SUFFIX: '.html',
+        HAS_SOURCE:  true
+      };
+    </script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="top" title="《A Little Java, A Few Patterns》笔记 1.0 documentation" href="index.html" /> 
+  </head>
+  <body>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li><a href="index.html">《A Little Java, A Few Patterns》笔记 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body">
+            
+  <div class="section" id="be-a-good-visitor">
+<h1><a class="toc-backref" href="#id1">Be a Good Visitor</a><a class="headerlink" href="#be-a-good-visitor" title="Permalink to this headline">¶</a></h1>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">tags:</th><td class="field-body">java, oop</td>
+</tr>
+<tr class="field-even field"><th class="field-name">category:</th><td class="field-body">java</td>
+</tr>
+</tbody>
+</table>
+<div class="contents topic" id="contents">
+<p class="topic-title first">Contents</p>
+<ul class="simple">
+<li><a class="reference internal" href="#be-a-good-visitor" id="id1">Be a Good Visitor</a></li>
+</ul>
+</div>
+<hr class="docutils" />
+<p>先引入 <cite>super</cite> 关键字。</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">ShadowedCartesianPt</span> <span class="n">extend</span> <span class="n">CartesianPt</span> <span class="o">{</span>
+    <span class="kt">int</span> <span class="n">tx</span><span class="o">;</span>
+    <span class="kt">int</span> <span class="n">ty</span><span class="o">;</span>
+    <span class="n">ShadowedCartesianPt</span><span class="o">(</span><span class="kt">int</span> <span class="n">_x</span><span class="o">,</span> <span class="kt">int</span> <span class="n">_y</span><span class="o">,</span> <span class="kt">int</span> <span class="n">_tx</span><span class="o">,</span> <span class="kt">int</span> <span class="n">_ty</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">_x</span><span class="o">,</span> <span class="n">_y</span><span class="o">);</span>
+        <span class="n">tx</span> <span class="o">=</span> <span class="n">_tx</span><span class="o">;</span>
+        <span class="n">ty</span> <span class="o">=</span> <span class="n">_ty</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kt">int</span> <span class="nf">distanceTo0</span><span class="o">()</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="kd">super</span><span class="o">.</span><span class="na">distanceTo0</span><span class="o">()</span>
+               <span class="o">+</span>
+               <span class="o">(</span><span class="kt">int</span><span class="o">)</span><span class="n">Math</span><span class="o">.</span><span class="na">sqrt</span><span class="o">(</span><span class="n">tx</span> <span class="o">*</span> <span class="n">tx</span> <span class="o">+</span> <span class="n">ty</span> <span class="o">*</span> <span class="n">ty</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="highlight-java"><div class="highlight"><pre><span class="kd">interface</span> <span class="nc">ShapeVisitorI</span> <span class="o">{</span>
+    <span class="kt">boolean</span> <span class="nf">forCircle</span><span class="o">(</span><span class="kt">int</span> <span class="n">r</span><span class="o">);</span>
+    <span class="kt">boolean</span> <span class="nf">forSquare</span><span class="o">(</span><span class="kt">int</span> <span class="n">s</span><span class="o">);</span>
+    <span class="kt">boolean</span> <span class="nf">forTrans</span><span class="o">(</span><span class="n">PointD</span> <span class="n">q</span><span class="o">,</span> <span class="n">ShapeD</span> <span class="n">s</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">abstract</span> <span class="kd">class</span> <span class="nc">ShapeD</span> <span class="o">{</span>
+    <span class="kd">abstract</span> <span class="kt">boolean</span> <span class="nf">accept</span><span class="o">(</span><span class="n">ShapeVisitorI</span> <span class="n">ask</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Circle</span> <span class="n">extend</span> <span class="n">ShapeD</span> <span class="o">{</span> <span class="c1">// 圆心在坐标原点的圆</span>
+    <span class="kt">int</span> <span class="n">r</span><span class="o">;</span>
+    <span class="n">Circle</span><span class="o">(</span><span class="kt">int</span> <span class="n">_r</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">_r</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kt">boolean</span> <span class="nf">accept</span><span class="o">(</span><span class="n">ShapeVisitorI</span> <span class="n">ask</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">ask</span><span class="o">.</span><span class="na">forCircle</span><span class="o">(</span><span class="n">r</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Square</span> <span class="n">extend</span> <span class="n">ShapeD</span> <span class="o">{</span> <span class="c1">//左上角在坐标原点的正方形</span>
+    <span class="kt">int</span> <span class="n">r</span><span class="o">;</span>
+    <span class="n">Square</span><span class="o">(</span><span class="kt">int</span> <span class="n">_r</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">r</span> <span class="o">=</span> <span class="n">_r</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kt">boolean</span> <span class="nf">accept</span><span class="o">(</span><span class="n">ShapeVisitorI</span> <span class="n">ask</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">ask</span><span class="o">.</span><span class="na">forSquare</span><span class="o">(</span><span class="n">r</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">Trans</span> <span class="n">extend</span> <span class="n">ShapeD</span> <span class="o">{</span> <span class="c1">//在指定位置的图形，</span>
+    <span class="n">PointD</span> <span class="n">q</span><span class="o">;</span>
+    <span class="n">ShapeD</span> <span class="n">s</span><span class="o">;</span>
+    <span class="n">Trans</span><span class="o">(</span><span class="n">PointD</span> <span class="n">_q</span><span class="o">,</span> <span class="n">ShapeD</span> <span class="n">_s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">q</span> <span class="o">=</span> <span class="n">_q</span><span class="o">;</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">_s</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kt">boolean</span> <span class="nf">accept</span><span class="o">(</span><span class="n">ShapeVisitorI</span> <span class="n">ask</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">ask</span><span class="o">.</span><span class="na">forTrans</span><span class="o">(</span><span class="n">q</span><span class="o">,</span> <span class="n">s</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="highlight-java"><div class="highlight"><pre><span class="c1">// 检查某个点是否在图形内部</span>
+<span class="kd">class</span> <span class="nc">HasPtV</span> <span class="kd">implements</span> <span class="n">ShapeVisitorI</span> <span class="o">{</span>
+    <span class="n">PointD</span> <span class="n">p</span><span class="o">;</span>
+    <span class="n">HasPtV</span><span class="o">(</span><span class="n">PointD</span> <span class="n">_p</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">_p</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">forCircle</span><span class="o">(</span><span class="kt">int</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="na">distanceTo0</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">forSquare</span><span class="o">(</span><span class="kt">int</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="na">x</span> <span class="o">&lt;=</span> <span class="n">s</span> <span class="o">&amp;&amp;</span> <span class="n">p</span><span class="o">.</span><span class="na">y</span> <span class="o">&lt;=</span> <span class="n">s</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">forTrans</span><span class="o">(</span><span class="n">PointD</span> <span class="n">q</span><span class="o">,</span> <span class="n">ShapeD</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">new</span> <span class="n">HasPtV</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">minus</span><span class="o">(</span><span class="n">q</span><span class="o">)));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<p>书中说下面精彩的地方到了。</p>
+<p>主要就是揭示了 <cite>interface</cite> 也能够被继承扩展，</p>
+<p>和访问者模式的精华所在：兼有灵活性及扩展性。</p>
+<div class="highlight-java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">Union</span> <span class="kd">extends</span> <span class="n">ShapeD</span> <span class="o">{</span>
+    <span class="n">ShapeD</span> <span class="n">s</span><span class="o">;</span>
+    <span class="n">ShapeD</span> <span class="n">t</span><span class="o">;</span>
+    <span class="n">Union</span><span class="o">(</span><span class="n">ShapeD</span> <span class="n">_s</span><span class="o">,</span> <span class="n">ShapeD</span> <span class="n">_t</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="n">_s</span><span class="o">;</span>
+        <span class="n">t</span> <span class="o">=</span> <span class="n">_t</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kt">boolean</span> <span class="nf">accept</span><span class="o">(</span><span class="n">ShapeVisitorI</span> <span class="n">ask</span><span class="o">)</span> <span class="o">{</span>
+        <span class="o">((</span><span class="n">UnionVisitorI</span><span class="o">)</span><span class="n">ask</span><span class="o">).</span><span class="na">forUnion</span><span class="o">(</span><span class="n">s</span><span class="o">,</span> <span class="n">t</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+
+<span class="kd">interface</span> <span class="nc">UnionVisitorI</span> <span class="kd">extends</span> <span class="n">ShapeVisitorI</span> <span class="o">{</span>
+    <span class="kt">boolean</span> <span class="nf">forUnion</span><span class="o">(</span><span class="n">ShapeD</span> <span class="n">s</span><span class="o">,</span> <span class="n">ShapeD</span> <span class="n">t</span><span class="o">);</span>
+<span class="o">}</span>
+
+<span class="kd">class</span> <span class="nc">UnionHasPtV</span> <span class="kd">extends</span> <span class="n">HasPtV</span> <span class="kd">implements</span> <span class="n">ShapeVisitorI</span> <span class="o">{</span>
+    <span class="n">UnionHasPtV</span><span class="o">(</span><span class="n">PointD</span> <span class="n">_p</span><span class="o">)</span> <span class="o">{</span>
+        <span class="kd">super</span><span class="o">(</span><span class="n">_p</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">forUnion</span><span class="o">(</span><span class="n">ShapeD</span> <span class="n">s</span><span class="o">,</span> <span class="n">ShapeD</span> <span class="n">t</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">)</span> <span class="o">||</span> <span class="n">t</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="k">this</span><span class="o">);</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="highlight-java"><div class="highlight"><pre><span class="kd">class</span> <span class="nc">HasPtV</span> <span class="kd">implements</span> <span class="n">ShapeVisitorI</span> <span class="o">{</span>
+    <span class="n">PointD</span> <span class="n">p</span><span class="o">;</span>
+    <span class="n">HasPtV</span><span class="o">(</span><span class="n">PointD</span> <span class="n">_p</span><span class="o">)</span> <span class="o">{</span>
+        <span class="n">p</span> <span class="o">=</span> <span class="n">_p</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="n">ShapeVisitorI</span> <span class="nf">newHasPt</span><span class="o">(</span><span class="n">PointD</span> <span class="n">p</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="k">new</span> <span class="n">HasPtV</span><span class="o">(</span><span class="n">p</span><span class="o">);</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">forCircle</span><span class="o">(</span><span class="kt">int</span> <span class="n">r</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="na">distanceTo0</span><span class="o">()</span> <span class="o">&lt;=</span> <span class="n">r</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">forSquare</span><span class="o">(</span><span class="kt">int</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">p</span><span class="o">.</span><span class="na">x</span> <span class="o">&lt;=</span> <span class="n">s</span> <span class="o">&amp;&amp;</span> <span class="n">p</span><span class="o">.</span><span class="na">y</span> <span class="o">&lt;=</span> <span class="n">s</span><span class="o">;</span>
+    <span class="o">}</span>
+    <span class="kd">public</span> <span class="kt">boolean</span> <span class="nf">forTrans</span><span class="o">(</span><span class="n">PointD</span> <span class="n">q</span><span class="o">,</span> <span class="n">ShapeD</span> <span class="n">s</span><span class="o">)</span> <span class="o">{</span>
+        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="na">accept</span><span class="o">(</span><span class="n">newHasPtV</span><span class="o">(</span><span class="n">p</span><span class="o">.</span><span class="na">minus</span><span class="o">(</span><span class="n">q</span><span class="o">)));</span>
+    <span class="o">}</span>
+<span class="o">}</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="first admonition-title">Tip</p>
+<p><strong>第九条建议</strong></p>
+<p>If a datatype may have to be extended,</p>
+<p>be forward looking and use a</p>
+<p>constructor-like(override) method</p>
+<p class="last">so that visitors can be extended too.</p>
+</div>
+<p>正是由于上面的提取出了 <cite>newHasPt</cite> 方法，下面直接重载即可。</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="k">class</span> <span class="nc">UnionHasPtV</span> <span class="n">extends</span> <span class="n">HasPtV</span> <span class="n">implements</span> <span class="n">UnionVisitorI</span> <span class="p">{</span>
+    <span class="n">UnionHasPtV</span><span class="p">(</span><span class="n">PointD</span> <span class="n">_p</span><span class="p">)</span> <span class="p">{</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">_p</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">ShapeVisitorI</span> <span class="n">newHasPt</span><span class="p">(</span><span class="n">PointD</span> <span class="n">p</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">new</span> <span class="n">UnionHasPtV</span><span class="p">(</span><span class="n">p</span><span class="p">);</span>
+    <span class="p">}</span>
+    <span class="n">public</span> <span class="n">boolean</span> <span class="n">forUnion</span><span class="p">(</span><span class="n">ShapeD</span> <span class="n">s</span><span class="p">,</span> <span class="n">ShapeD</span> <span class="n">t</span><span class="p">)</span> <span class="p">{</span>
+        <span class="k">return</span> <span class="n">s</span><span class="o">.</span><span class="n">accept</span><span class="p">(</span><span class="n">this</span><span class="p">)</span> <span class="o">||</span> <span class="n">t</span><span class="o">.</span><span class="n">accept</span><span class="p">(</span><span class="n">this</span><span class="p">);</span>
+    <span class="p">}</span>
+<span class="p">}</span>
+</pre></div>
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar">
+        <div class="sphinxsidebarwrapper">
+  <h3>This Page</h3>
+  <ul class="this-page-menu">
+    <li><a href="_sources/chpater_09.txt"
+           rel="nofollow">Show Source</a></li>
+  </ul>
+<div id="searchbox" style="display: none">
+  <h3>Quick search</h3>
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    <p class="searchtip" style="font-size: 90%">
+    Enter search terms or a module, class or function name.
+    </p>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li><a href="index.html">《A Little Java, A Few Patterns》笔记 1.0 documentation</a> &raquo;</li> 
+      </ul>
+    </div>
+    <div class="footer">
+        &copy; Copyright 2014, JaunaryStar.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.2.3.
+    </div>
+  </body>
+</html>
